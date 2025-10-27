@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Target, Users, Lightbulb, TrendingUp } from "lucide-react";
@@ -54,21 +54,66 @@ const About = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border hover:border-primary/50 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10"
-            >
-              <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                <feature.icon className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
-            </motion.div>
-          ))}
+          {features.map((feature, index) => {
+            const x = useMotionValue(0);
+            const y = useMotionValue(0);
+            const rotateX = useTransform(y, [-50, 50], [10, -10]);
+            const rotateY = useTransform(x, [-50, 50], [-10, 10]);
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50, rotateX: -20 }}
+                animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateX: 5,
+                  rotateY: 5,
+                  z: 50
+                }}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const centerX = rect.left + rect.width / 2;
+                  const centerY = rect.top + rect.height / 2;
+                  x.set((e.clientX - centerX) / 10);
+                  y.set((e.clientY - centerY) / 10);
+                }}
+                onMouseLeave={() => {
+                  x.set(0);
+                  y.set(0);
+                }}
+                style={{ 
+                  rotateX,
+                  rotateY,
+                  transformStyle: "preserve-3d",
+                  perspective: 1000
+                }}
+                className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border hover:border-primary/50 transition-all duration-300 group hover:shadow-lg hover:shadow-primary/10 cursor-pointer"
+              >
+                <motion.div 
+                  className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4"
+                  style={{ transform: "translateZ(30px)" }}
+                  whileHover={{ scale: 1.2, rotateZ: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <feature.icon className="w-6 h-6 text-primary-foreground" />
+                </motion.div>
+                <motion.h3 
+                  className="text-xl font-semibold mb-2"
+                  style={{ transform: "translateZ(20px)" }}
+                >
+                  {feature.title}
+                </motion.h3>
+                <motion.p 
+                  className="text-muted-foreground"
+                  style={{ transform: "translateZ(15px)" }}
+                >
+                  {feature.description}
+                </motion.p>
+              </motion.div>
+            );
+          })}
         </div>
 
         <motion.div
