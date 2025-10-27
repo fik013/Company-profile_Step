@@ -44,10 +44,10 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Tentang <span className="bg-gradient-primary bg-clip-text text-transparent">TechNova</span>
+            Tentang <span className="bg-gradient-primary bg-clip-text text-transparent">StepByDev</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            TechNova adalah perusahaan teknologi yang berdedikasi untuk menciptakan solusi inovatif
+            StepByDev adalah perusahaan teknologi yang berdedikasi untuk menciptakan solusi inovatif
             yang membantu bisnis berkembang di era digital. Dengan pengalaman lebih dari 10 tahun,
             kami telah membantu ratusan klien mencapai transformasi digital mereka.
           </p>

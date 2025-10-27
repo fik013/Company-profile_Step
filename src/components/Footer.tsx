@@ -16,7 +16,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4">
-              TechNova
+              StepByDev
             </h3>
             <p className="text-muted-foreground mb-4 max-w-md">
               Kami adalah perusahaan teknologi yang berdedikasi untuk menciptakan solusi inovatif
@@ -58,7 +58,7 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Kontak</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li>Jakarta, Indonesia</li>
-              <li>info@technova.com</li>
+              <li>info@stepbydev.com</li>
               <li>+62 21 1234 5678</li>
             </ul>
           </div>
@@ -66,7 +66,7 @@ const Footer = () => {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-border text-center text-muted-foreground">
-          <p>© {new Date().getFullYear()} TechNova. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} StepByDev. All rights reserved.</p>
         </div>
       </div>
     </footer>

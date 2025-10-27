@@ -51,7 +51,7 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "info@technova.com",
+      value: "info@stepbydev.com",
     },
     {
       icon: Phone,

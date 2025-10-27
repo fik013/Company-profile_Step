@@ -37,7 +37,7 @@ const Maps = () => {
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="TechNova Location"
+            title="StepByDev Location"
           />
         </motion.div>
       </div>
