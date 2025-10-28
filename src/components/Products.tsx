@@ -8,6 +8,26 @@ import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
 import CardSwap, { Card } from "./ui/CardSwap";
 import RotatingText from "./ui/RotatingText";
+import LogoLoop from "./ui/LogoLoop";
+import { FaMicrosoft } from 'react-icons/fa';
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss, SiLaravel, SiPhp, SiCodeigniter, SiMysql, SiHtml5, SiCss3, SiJavascript, SiAndroid } from 'react-icons/si';
+
+const techLogos = [
+  { node: <SiReact />, title: "React", href: "https://react.dev" },
+  { node: <SiNextdotjs />, title: "Next.js", href: "https://nextjs.org" },
+  { node: <SiTypescript />, title: "TypeScript", href: "https://www.typescriptlang.org" },
+  { node: <SiTailwindcss />, title: "Tailwind CSS", href: "https://tailwindcss.com" },
+  { node: <SiLaravel />, title: "Laravel", href: "https://laravel.com" },
+  { node: <SiPhp />, title: "PHP", href: "https://www.php.net" },
+  { node: <SiCodeigniter />, title: "CodeIgniter", href: "https://codeigniter.com" },
+  { node: <SiMysql />, title: "MySQL", href: "https://www.mysql.com" },
+  { node: <SiHtml5 />, title: "HTML5", href: "https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5" },
+  { node: <SiCss3 />, title: "CSS3", href: "https://developer.mozilla.org/en-US/docs/Web/CSS" },
+  { node: <SiJavascript />, title: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+  { node: <SiReact />, title: "React Native", href: "https://reactnative.dev" },
+  { node: <SiAndroid />, title: "Android", href: "https://developer.android.com" },
+  { node: <FaMicrosoft />, title: "VBA", href: "https://docs.microsoft.com/en-us/office/vba/" },
+];
 
 const Products = () => {
   const ref = useRef(null);
@@ -88,6 +108,7 @@ const Products = () => {
               verticalDistance={70}
               delay={5000}
               pauseOnHover={false}
+              onCardClick={() => {}}
             >
               {products.map((product, index) => (
                 <Card key={index}>
@@ -151,6 +172,20 @@ const Products = () => {
             </CardSwap>
           </div>
         </div>
+      </div>
+      <div style={{ height: '200px', position: 'relative', overflow: 'hidden', marginTop: '15rem'}}>
+        <LogoLoop
+          logos={techLogos}
+          speed={70}
+          direction="left"
+          logoHeight={48}
+          gap={40}
+          pauseOnHover
+          scaleOnHover
+          fadeOut
+          fadeOutColor="#00000027"
+          ariaLabel="Technology partners"
+        />
       </div>
     </section>
   );
