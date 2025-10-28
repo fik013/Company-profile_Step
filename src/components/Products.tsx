@@ -62,7 +62,7 @@ const Products = () => {
   ];
 
   return (
-    <section id="products" className="py-24 bg-background relative overflow-hidden">
+    <section id="products" className="pt-24 bg-background relative overflow-hidden">
       <div className="container mx-auto px-4" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
