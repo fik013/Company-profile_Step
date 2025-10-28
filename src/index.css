@@ -8,6 +8,50 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Light theme colors based on logo palette */
+    --background: 0 0% 100%; /* White */
+    --foreground: 220 25% 10%; /* Dark blue-gray */
+
+    --card: 0 0% 98%; /* Very light gray */
+    --card-foreground: 220 25% 10%;
+
+    --popover: 0 0% 98%;
+    --popover-foreground: 220 25% 10%;
+
+    --primary: 25 95% 53%; /* Vibrant orange from logo */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 25% 20%; /* Dark blue-gray */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 95%; /* Light gray */
+    --muted-foreground: 220 25% 40%; /* Medium gray */
+
+    --accent: 220 25% 20%; /* Dark blue from logo */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%; /* Light border */
+    --input: 0 0% 90%;
+    --ring: 25 95% 53%; /* Orange ring */
+
+    --radius: 0.75rem;
+
+    /* Custom design tokens for light theme */
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 53%) 0%, hsl(220 25% 20%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(0 0% 95%) 100%);
+    --gradient-accent: linear-gradient(90deg, hsl(25 95% 53%) 0%, hsl(220 25% 20%) 100%);
+    
+    --shadow-glow: 0 0 40px hsl(25 95% 53% / 0.2);
+    --shadow-card: 0 10px 30px -10px hsl(220 25% 10% / 0.1);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    /* Dark theme colors */
     --background: 220 25% 10%;
     --foreground: 210 40% 98%;
 
@@ -36,22 +80,13 @@ All colors MUST be HSL.
     --input: 220 15% 25%;
     --ring: 217 91% 60%;
 
-    --radius: 0.75rem;
-
-    /* Custom design tokens */
+    /* Custom design tokens for dark theme */
     --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%) 0%, hsl(270 80% 65%) 100%);
     --gradient-hero: linear-gradient(180deg, hsl(220 25% 10%) 0%, hsl(220 30% 15%) 100%);
     --gradient-accent: linear-gradient(90deg, hsl(180 100% 50%) 0%, hsl(217 91% 60%) 100%);
     
     --shadow-glow: 0 0 40px hsl(217 91% 60% / 0.3);
     --shadow-card: 0 10px 30px -10px hsl(220 25% 5% / 0.5);
-    
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .dark {
-    --background: 220 25% 10%;
-    --foreground: 210 40% 98%;
   }
 }
 

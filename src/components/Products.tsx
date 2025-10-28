@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import product1 from "@/assets/product-1.jpg";
 import product2 from "@/assets/product-2.jpg";
 import product3 from "@/assets/product-3.jpg";
+import CardSwap, { Card } from "./ui/CardSwap";
+import RotatingText from "./ui/RotatingText";
 
 const Products = () => {
   const ref = useRef(null);
@@ -56,110 +58,98 @@ const Products = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product, index) => {
-            const CardWrapper = ({ children }: { children: React.ReactNode }) => {
-              const x = useMotionValue(0);
-              const y = useMotionValue(0);
-              
-              const rotateX = useTransform(y, [-100, 100], [10, -10]);
-              const rotateY = useTransform(x, [-100, 100], [-10, 10]);
-              
-              return (
-                <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  whileHover={{ 
-                    scale: 1.05,
-                    rotateX: 5,
-                    rotateY: -5,
-                    z: 50
-                  }}
-                  onMouseMove={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    x.set(e.clientX - centerX);
-                    y.set(e.clientY - centerY);
-                  }}
-                  onMouseLeave={() => {
-                    x.set(0);
-                    y.set(0);
-                  }}
-                  style={{ 
-                    rotateX, 
-                    rotateY,
-                    transformStyle: "preserve-3d",
-                    perspective: 1000
-                  }}
-                  className="group cursor-pointer"
-                  onClick={() => navigate(`/product/${product.id}`)}
-                >
-                  {children}
-                </motion.div>
-              );
-            };
-
-            return (
-              <CardWrapper key={index}>
-                <motion.div 
-                  className="bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 h-full flex flex-col"
-                  style={{ transformStyle: "preserve-3d" }}
-                >
-                  {/* Image */}
-                  <div className="relative h-64 overflow-hidden">
-                    <motion.img
-                      src={product.image}
-                      alt={product.title}
-                      className="w-full h-full object-cover"
-                      style={{ transform: "translateZ(20px)" }}
-                    />
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-t from-card/90 to-transparent"
-                      style={{ transform: "translateZ(25px)" }}
-                    />
-                  </div>
-
-                  {/* Content */}
+        <div className="flex items-center">
+          <div className="w-1/2 pr-8">
+            <h3 className="text-3xl font-bold mb-4">Jelajahi Solusi Inovatif Kami</h3>
+            <p className="text-muted-foreground">
+              Setiap kartu mewakili komitmen kami untuk memberikan keunggulan. Geser untuk melihat bagaimana kami dapat membantu Anda mencapai tujuan Anda.
+            </p>
+            <div className="flex items-center mt-8">
+              <h4 className="text-xl font-semibold mr-4">Kami melayani:</h4>
+              <RotatingText
+                texts={[
+                  "pembuatan website",
+                  "aplikasi",
+                  "mobile",
+                  "desktop",
+                  "debug",
+                  "perbaikan erorr",
+                  "penambahan fitur",
+                  "dan lainnya",
+                ]}
+                mainClassName="bg-gradient-to-r from-primary to-secondary text-white text-2xl font-bold px-4 py-2 rounded-lg"
+                elementLevelClassName="text-white"
+              />
+            </div>
+          </div>
+          <div style={{ height: '600px', position: 'relative', width: '50%' }}>
+            <CardSwap
+              cardDistance={60}
+              verticalDistance={70}
+              delay={5000}
+              pauseOnHover={false}
+            >
+              {products.map((product, index) => (
+                <Card key={index}>
                   <motion.div 
-                    className="p-6 flex-1 flex flex-col"
-                    style={{ transform: "translateZ(30px)" }}
+                    className="bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 h-full flex flex-col"
+                    style={{ transformStyle: "preserve-3d" }}
                   >
-                    <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
-                      {product.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4 flex-1">
-                      {product.description}
-                    </p>
-
-                    {/* Features */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {product.features.map((feature, idx) => (
-                        <motion.span
-                          key={idx}
-                          whileHover={{ scale: 1.1, rotateZ: 5 }}
-                          className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20"
-                        >
-                          {feature}
-                        </motion.span>
-                      ))}
+                    {/* Image */}
+                    <div className="relative h-64 overflow-hidden">
+                      <motion.img
+                        src={product.image}
+                        alt={product.title}
+                        className="w-full h-full object-cover"
+                        style={{ transform: "translateZ(20px)" }}
+                      />
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-t from-card/90 to-transparent"
+                        style={{ transform: "translateZ(25px)" }}
+                      />
                     </div>
 
-                    {/* CTA */}
-                    <motion.button 
-                      className="flex items-center text-primary group-hover:gap-2 transition-all"
-                      whileHover={{ x: 5 }}
-                      style={{ transform: "translateZ(40px)" }}
+                    {/* Content */}
+                    <motion.div 
+                      className="p-6 flex-1 flex flex-col"
+                      style={{ transform: "translateZ(30px)" }}
                     >
-                      Pelajari Lebih Lanjut
-                      <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </motion.button>
+                      <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                        {product.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-4 flex-1">
+                        {product.description}
+                      </p>
+
+                      {/* Features */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {product.features.map((feature, idx) => (
+                          <motion.span
+                            key={idx}
+                            whileHover={{ scale: 1.1, rotateZ: 5 }}
+                            className="text-xs px-3 py-1 bg-primary/10 text-primary rounded-full border border-primary/20"
+                          >
+                            {feature}
+                          </motion.span>
+                        ))}
+                      </div>
+
+                      {/* CTA */}
+                      <motion.button 
+                        className="flex items-center text-primary group-hover:gap-2 transition-all"
+                        whileHover={{ x: 5 }}
+                        style={{ transform: "translateZ(40px)" }}
+                        onClick={() => navigate(`/product/${product.id}`)}
+                      >
+                        Pelajari Lebih Lanjut
+                        <ArrowRight className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </motion.button>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              </CardWrapper>
-            );
-          })}
+                </Card>
+              ))}
+            </CardSwap>
+          </div>
         </div>
       </div>
     </section>

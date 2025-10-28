@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import LiquidEther from "@/components/ui/liquid-ether";
+import ShinyText from "@/components/ui/ShinyText";
+
 
 const Hero = () => {
   const { scrollYProgress } = useScroll();
@@ -58,9 +60,7 @@ const Hero = () => {
             style={{ transform: "translateZ(60px)" }}
           >
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-primary font-medium">
-              Inovasi Teknologi Masa Depan
-            </span>
+            <ShinyText text="Inovasi Teknologi Masa Depan" />
           </motion.div>
  
           <motion.h1
