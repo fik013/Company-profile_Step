@@ -38,19 +38,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.apiMiddleware = void 0;
 var fs_1 = require("fs");
-var path_1 = require("path");
+var path = require("path");
 var apiMiddleware = function (app) {
-    var apiDir = path_1.default.resolve(__dirname, 'src/api');
+    var apiDir = path.resolve(__dirname, 'src/api');
     var apiFiles = (0, fs_1.readdirSync)(apiDir).filter(function (file) { return file.endsWith('.ts'); });
     var _loop_1 = function (file) {
-        var routePath = "/api/".concat(path_1.default.basename(file, '.ts'));
+        var routePath = "/api/".concat(path.basename(file, '.ts'));
         app.use(routePath, function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
             var module_1, handler, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 5, , 6]);
-                        return [4 /*yield*/, Promise.resolve("".concat(path_1.default.join(apiDir, file))).then(function (s) { return require(s); })];
+                        return [4 /*yield*/, Promise.resolve("".concat(path.join(apiDir, file))).then(function (s) { return require(s); })];
                     case 1:
                         module_1 = _a.sent();
                         handler = module_1.default;

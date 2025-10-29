@@ -2,7 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-import { apiMiddlewarePlugin } from "./api-middleware";
+import { apiMiddleware } from "./api-middleware";
+import type { Plugin, ViteDevServer } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -14,7 +15,12 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === "development" && componentTagger(),
-    apiMiddlewarePlugin(),
+    {
+      name: 'api-middleware',
+      configureServer(server: ViteDevServer) {
+        apiMiddleware(server.middlewares);
+      },
+    } as Plugin,
   ].filter(Boolean),
   resolve: {
     alias: {
