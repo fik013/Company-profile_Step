@@ -57,9 +57,9 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Kontak</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li>Jakarta, Indonesia</li>
-              <li>info@stepbydev.com</li>
-              <li>+62 21 1234 5678</li>
+              <li>Subang, Indonesia</li>
+              <li>stepbydev0@gmail.com</li>
+              <li>+62 896 9264 1965</li>
             </ul>
           </div>
         </div>

@@ -51,17 +51,17 @@ const Contact = () => {
     {
       icon: Mail,
       title: "Email",
-      value: "info@stepbydev.com",
+      value: "stepbydev0@gmail.com",
     },
     {
       icon: Phone,
       title: "Telepon",
-      value: "+62 21 1234 5678",
+      value: "+62 896 9264 1965",
     },
     {
       icon: MapPin,
       title: "Alamat",
-      value: "Jakarta, Indonesia",
+      value: "Subang, Indonesia",
     },
   ];
 

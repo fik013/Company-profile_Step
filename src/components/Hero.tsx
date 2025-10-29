@@ -78,7 +78,7 @@ const Hero = () => {
             >
               Inovasi Teknologi
             </motion.span>{" "}
-            Masa Depan
+            untuk Masa Depan Bisnis Anda
           </motion.h1>
  
           <motion.p
