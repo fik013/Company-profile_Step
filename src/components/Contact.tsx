@@ -35,16 +35,33 @@ const Contact = () => {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Pesan Terkirim!",
-      description: "Terima kasih telah menghubungi kami. Kami akan segera merespons.",
-    });
-    
-    reset();
-    setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Pesan Terkirim!",
+          description: "Terima kasih telah menghubungi kami. Kami akan segera merespons.",
+        });
+        reset();
+      } else {
+        throw new Error('Gagal mengirim pesan. Silakan coba lagi.');
+      }
+    } catch (error) {
+      toast({
+        title: "Terjadi Kesalahan",
+        description: error instanceof Error ? error.message : "Terjadi kesalahan yang tidak diketahui.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
