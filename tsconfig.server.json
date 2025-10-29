@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "noEmit": false,
+    "outDir": "dist"
+  },
+  "include": ["server.ts", "api-middleware.ts"],
+  "exclude": ["node_modules", "src"]
+}

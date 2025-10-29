@@ -1,6 +1,6 @@
 
-import express from 'express';
-import path from 'path';
+import * as express from 'express';
+import * as path from 'path';
 import { apiMiddleware } from './api-middleware';
 
 const app = express();
